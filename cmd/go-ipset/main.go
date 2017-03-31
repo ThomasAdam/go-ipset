@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/digineo/go-ipset"
+	"github.com/millken/go-ipset"
 	"os"
 )
 

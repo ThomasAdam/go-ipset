@@ -8,10 +8,12 @@ import (
 )
 
 /*
-#cgo pkg-config: libipset
+
+#cgo LDFLAGS: -lipset
 
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <libipset/data.h>
 #include <libipset/parse.h>
 #include <libipset/session.h>
@@ -78,7 +80,13 @@ func exec(cmd uint32, setname, address string, args ...string) error {
 		}
 		return fmt.Errorf("failed to get type of cmd %d", cmd)
 	}
-	C.ipset_parse_elem(session, typ.last_elem_optional, address_c)
+	var e uint32
+	if typ.last_elem_optional {
+		e = 1
+	} else {
+		e = 0
+	}
+	C.ipset_parse_elem(session, e, address_c)
 
 	// Iterate over argument pairs
 	for i := 0; i < len(args); i += 2 {
