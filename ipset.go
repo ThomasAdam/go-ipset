@@ -67,7 +67,7 @@ func exec(cmd uint32, setname, address string, args ...string) error {
 	defer C.ipset_session_fini(session)
 
 	// Replace existing entries
-	C.ipset_envopt_parse(session, C.IPSET_ENV_EXIST, nil)
+	//C.ipset_envopt_parse(session, C.IPSET_ENV_EXIST, nil)
 
 	// Set setname
 	if C.ipset_parse_setname(session, C.IPSET_SETNAME, setname_c) != 0 {
