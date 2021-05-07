@@ -80,13 +80,13 @@ func exec(cmd uint32, setname, address string, args ...string) error {
 		}
 		return fmt.Errorf("failed to get type of cmd %d", cmd)
 	}
-	var e uint32
+	var e bool
 	if typ.last_elem_optional {
-		e = 1
+		e = true
 	} else {
-		e = 0
+		e = false
 	}
-	C.ipset_parse_elem(session, C.CBool(e), address_c)
+	C.ipset_parse_elem(session, C.bool(e), address_c)
 
 	// Iterate over argument pairs
 	for i := 0; i < len(args); i += 2 {
