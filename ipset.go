@@ -86,7 +86,7 @@ func exec(cmd uint32, setname, address string, args ...string) error {
 	} else {
 		e = 0
 	}
-	C.ipset_parse_elem(session, e, address_c)
+	C.ipset_parse_elem(session, C.CBool(e), address_c)
 
 	// Iterate over argument pairs
 	for i := 0; i < len(args); i += 2 {
