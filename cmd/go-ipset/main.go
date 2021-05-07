@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/millken/go-ipset"
 	"os"
+
+	"github.com/ThomasAdam/go-ipset"
 )
 
 func main() {
